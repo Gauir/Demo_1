@@ -15,12 +15,12 @@ const userService = {
         if (user) {
             // Compare the login password with the hashed password in DB
             const isMatch = await bcrypt.compare(plainPassword, user.password);
+            print(isMatch);
             if (isMatch) {
                 // delete user.password; // Don't send the hash back to the client
                 // return user;
                 const userResponse = { ...user };
                 print(userResponse);
-                print(userResponse.password);
                 delete userResponse.password; // Never send the hashed password to React!
                 return userResponse;
             }
